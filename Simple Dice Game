@@ -1,0 +1,73 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Simple_Dice_Game_C___No_GUI_
+{
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+            //Variables
+            int playerRandomNum;
+            int computerRandomNum;
+            int playerPoints = 0;
+            int computerPoints = 0;
+
+            //A for loop of the game
+            Random random = new Random();
+
+            Console.WriteLine("How many rounds do you want to play?");
+            int TotalRounds = Convert.ToInt32(Console.ReadLine());
+            for (int i = 0; i < TotalRounds; i++)
+            {
+                //Introduction
+                Console.WriteLine("Welcome to the random Dice Game.");
+                Console.WriteLine("Whoever has the bigger dice value wins.");
+                Console.WriteLine("Press any key to roll the dice.");
+
+                Console.ReadKey();
+                playerRandomNum = random.Next(1, 7);
+                Console.WriteLine("You rolled a " + playerRandomNum);
+
+                //A gap for generating numbers between the player and computer.
+                Console.WriteLine("...");
+                System.Threading.Thread.Sleep(1000);
+
+                computerRandomNum = random.Next(1, 7);
+                Console.WriteLine("Computer rolled a " + computerRandomNum);
+
+                //A points system of the User and Computer.
+                if(playerRandomNum > computerRandomNum)
+                {
+                    playerPoints++;
+                    Console.WriteLine("You Win!");
+                }else if(computerRandomNum > computerPoints)
+                {
+                    computerPoints++;
+                    Console.WriteLine("Computer Wins!");
+                }
+
+                Console.WriteLine("Scores = Player : " + playerPoints + ". Computer : " + computerPoints + ".");
+                Console.WriteLine();
+            }
+
+            //Determining who wins the game
+            if (playerPoints > computerPoints)
+            {
+                Console.WriteLine("You Win!");
+            }else if(playerPoints < computerPoints)
+            {
+                Console.WriteLine("You Lose!");
+            }
+            else
+            {
+                Console.WriteLine("Draw.");
+            }
+
+            Console.ReadKey();
+        }
+    }
+}
