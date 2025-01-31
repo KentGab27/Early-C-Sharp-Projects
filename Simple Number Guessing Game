@@ -1,49 +1,64 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace Number_Guessing_Game__No_GUI_
+namespace Number_Guessing_Game
 {
     internal class Program
     {
         static void Main(string[] args)
         {
 
-            //Boolean to perform logical operations, True or False.
-            bool isCorrectGuess = false;
+            //Introduction of the program
+            Console.WriteLine("Welcome to the Number Guessing Game!");
+            Console.WriteLine("You will guess numbers between 1 and 10.");
+
+            // Ask the player how many rounds they want to play
+            Console.WriteLine("Enter the number of rounds you want to play: ");
+            int totalRounds = Convert.ToInt32(Console.ReadLine());
+            int score = 0;
+
             Random random = new Random();
 
-            //Puting random numbers 1 - 10 in the integer variable.
-            int randomNum = random.Next(1, 11);
-
-            //Introduction of the program
-            Console.WriteLine("Welcome to a number guessing game.");
-            Console.WriteLine("A number between 1-10 will be generated.");
-            Console.WriteLine("Guessing the right wins the game.");
-
-            //Prompting user to input a number
-            while (!isCorrectGuess)
+            //Generate a random number between 1-10.
+            for (int round = 1; round <= totalRounds; round++)
             {
-                Console.WriteLine("Enter your guess.");
-                int guess = Convert.ToInt32(Console.ReadLine());
+                int randomNum = random.Next(1, 11);
+                bool isCorrectGuess = false; 
 
-                if (guess > randomNum)
+                Console.WriteLine($"" +
+                    $"Round {round}: Try to guess the number!");
+
+                while (!isCorrectGuess)
                 {
-                    Console.WriteLine("Your guess is too high.");
-                }
-                else if(guess < randomNum)
-                {
-                    Console.WriteLine("Your guess is too low.");
-                }
-                else
-                {
-                    Console.WriteLine("Congratulations, You are Correct.");
+                    Console.Write("Enter your guess: ");
+                    int guess;
+
+                    while (!int.TryParse(Console.ReadLine(), out guess) || guess < 1 || guess > 10)
+                    {
+                        Console.Write("Invalid input. Please enter a number between 1 and 10: ");
+                    }
+
+                    if (guess > randomNum)
+                    {
+                        Console.WriteLine("Your guess is too high. Try again!");
+                    }
+                    else if (guess < randomNum)
+                    {
+                        Console.WriteLine("Your guess is too low. Try again!");
+                    }
+                    else
+                    {
+                        Console.WriteLine("Congratulations! You guessed the correct number!");
+                        score++;
+                        isCorrectGuess = true; 
+                    }
                 }
             }
 
+            // Display the final score
+            Console.WriteLine($"Your final score: {score} out of {totalRounds} rounds.");
+
             Console.ReadKey();
+
         }
     }
 }
