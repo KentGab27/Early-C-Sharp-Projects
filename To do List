@@ -1,0 +1,75 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace To_do_list__No_GUI_
+{
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+            //Introduction of the program and used for storing user input.
+            Console.WriteLine("A to do list program.");
+            List<string> taskList = new List<string>();
+            string option = "";
+
+            while (option != "x")
+            {
+                //Input options for the user.
+                Console.WriteLine("\n");
+                Console.WriteLine("What would you like to do?");
+                Console.WriteLine("Enter 1 to add task.");
+                Console.WriteLine("Enter 2 to remove task.");
+                Console.WriteLine("Enter 3 to view list.");
+                Console.WriteLine("Enter x to exit.");
+
+                option = Console.ReadLine();
+
+                //Adding a task.
+                if(option == "1")
+                {;
+                    Console.WriteLine("\nEnter a task.");
+                    string task = Console.ReadLine();
+                    taskList.Add(task);
+                    Console.WriteLine("\nTask added.");
+
+                }
+                //Removing a task.
+                else if(option == "2")
+                {
+                    for (int i = 0; i < taskList.Count; i++)
+                    {
+                        Console.WriteLine(i + " : " + taskList[i]);
+                    }
+
+                    Console.WriteLine("\nEnter the number of the task to remove from the list.");
+                    int taskNumber = Convert.ToInt32(Console.ReadLine());
+                    taskList.RemoveAt(taskNumber);
+
+                }
+                //Viewing the task.
+                else if(option == "3")
+                {
+                    Console.WriteLine("\nCurrent tasks: ");
+                    for (int i = 0; i < taskList.Count; i++)
+                    {
+                        Console.WriteLine(taskList[i]);
+                    }
+ 
+                }
+                //Exiting the program.
+                else if(option == "x")
+                {
+                    Console.WriteLine("Exiting program.");
+                }
+                else
+                {
+                    Console.WriteLine("Invalid option.");
+                }
+            }
+            Console.WriteLine("Thank you for using the program.");
+        }
+    }
+}
