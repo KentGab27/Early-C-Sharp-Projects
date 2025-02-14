@@ -1,0 +1,97 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Rock_Paper_Scissors
+{
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+            //Variable for scores
+            Random random = new Random();
+            int playerScore = 0;
+            int enemyScore = 0;
+
+            Console.WriteLine("Welcome to Rock Paper Scissors C# Game.");
+
+            //Introduction
+            while(playerScore != 3 && enemyScore != 3)
+            {
+                Console.WriteLine("Player score - " + playerScore + ". Enemy score -" + enemyScore);
+                Console.WriteLine("Please enter 'r' for rock, 'p' for paper and any key for scissors.");
+                string playerChoice = Console.ReadLine();
+
+                //Randomize the computer's choices.
+                int enemyChoice = random.Next(0, 3);
+
+                //Actions for the choices of the player and Computer.
+                if (enemyChoice == 0)
+                {
+                    Console.WriteLine("Computer chooses Rock.");
+                    switch (playerChoice)
+                    {
+                        case "r":
+                            Console.WriteLine("Tie");
+                            break;
+                        case "p":
+                            Console.WriteLine("You win");
+                            playerScore++;
+                            break;
+                        default:
+                            Console.WriteLine("Computer wins");
+                            enemyScore++;
+                            break;
+                    }
+                }
+                else if (enemyChoice == 1)
+                {
+                    Console.WriteLine("Enemy chooses Paper");
+                    switch (playerChoice)
+                    {
+                        case "r":
+                            Console.WriteLine("Computer Wins");
+                            enemyScore++;
+                            break;
+                        case "p":
+                            Console.WriteLine("Tie");
+                            break;
+                        default:
+                            Console.WriteLine("You win.");
+                            playerScore++;
+                            break;
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("Enemy chooses Scissors.");
+                    switch (playerChoice)
+                    {
+                        case "r":
+                            Console.WriteLine("You win");
+                            playerScore++;
+                            break;
+                        case "p":
+                            Console.WriteLine("Computer Wins");
+                            enemyScore++;
+                            break; 
+                        default:
+                            Console.WriteLine("Tie");
+                            break;
+                    }
+                }
+            }
+
+            if (playerScore == 3)
+            {
+                Console.WriteLine("You win");
+            }
+            else
+            {
+                Console.WriteLine("Computer wins.");
+            }
+        }
+    }
+}
